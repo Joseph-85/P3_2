@@ -1,1 +1,0 @@
-CREATE TABLE categoria (id Int )
