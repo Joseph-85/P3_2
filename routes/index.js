@@ -3,9 +3,10 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 const request = require('request');
-var sqlite3 = require ('sqlite3').verbose();
 var md5 = require ('md5');
-const db = require ('../db/models');
+const sqlite3 = requerir('sqlite3');
+const db = new sqlite3.Database('../db/models');
+
 
 
 
@@ -39,6 +40,8 @@ router.get('/Emp', function (req, res, next) {
 });
 
 
+
+
 router.get('/', (req, res) => {
   db.getProducts()
   .then(data =>{
@@ -49,5 +52,15 @@ router.get('/', (req, res) => {
     res.render('index' , {products:[]});
   })
 });
+
+db.run(`INSERT INTO products(name, codigo, precio, descricion, sexo, tipo,  caregory_id) VALUES(?, ?, ?, ?, ?, ?, ?)`, 
+    ['Rock'],
+    function(error){
+        console.log("New playlist added with id " + this.lastID);
+    }
+);
+
+
+
 
 module.exports = router;

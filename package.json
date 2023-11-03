@@ -32,5 +32,8 @@
     "serve-favicon": "^2.5.0",
     "sqlite3": "^5.1.6",
     "xhr2": "^0.2.1"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0"
   }
 }

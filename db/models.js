@@ -3,11 +3,13 @@ const db = require('./connection');
 let dbt = {
     getProducts: 'SELESCT * FROM products',
     getImages:'SELESCT * FROM images',
-    getCategorias: 'SELESCT * FROM categoria',
+    getCategorias: 'SELESCT * FROM categorias',
     insertProduct:'INSERT INTO products(name, codigo, precio, descricion, sexo, tipo,  caregory_id) VALUES(?, ?, ?, ?, ?, ?, ?)',
     insertImages:'INSERT INTO images(url, product_id, destacado) VALUES(?, ?, ?)',
+    insertCategorias:'INSERT INTO categorias (name) VALUES(?)',
     updateProduct:'UPDATE products SET name=? ,codigo=?, precio=?, descricion=?, sexo=?, tipo=?,  caregory_id=? WHERE id =?',
     updateImages:'UPDATE products SET url=? ,product_id=?, destacado=?  WHERE id =?',
+    updateCategorias:'UPDATE categorias SET name=?',
     deleteProduct:'DELETE FROM produsts WHERE id=?',
     deleteImages:'DELETE FROM images WHERE id=?',
 };
@@ -60,5 +62,17 @@ module.exports ={
             })
         })
     },
+
+
+    insertCategorias (name){
+        return new Promise ((resolve, reject) =>{
+            db.run(dbt.insertCategorias, [name], (err) =>{
+                if(err) reject(err);
+                resolve ();
+            })
+        })
+    },
+
+    
 
 }
