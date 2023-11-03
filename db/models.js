@@ -4,10 +4,10 @@ let dbt = {
     getProducts: 'SELESCT * FROM products',
     getImages:'SELESCT * FROM images',
     getCategorias: 'SELESCT * FROM categorias',
-    insertProduct:'INSERT INTO products(name, codigo, precio, descricion, sexo, tipo,  caregory_id) VALUES(?, ?, ?, ?, ?, ?, ?)',
+    insertProduct:'INSERT INTO products(name, codigo, precio, descricion, sexo, empresa,  caregory_id) VALUES(?, ?, ?, ?, ?, ?, ?)',
     insertImages:'INSERT INTO images(url, product_id, destacado) VALUES(?, ?, ?)',
     insertCategorias:'INSERT INTO categorias (name) VALUES(?)',
-    updateProduct:'UPDATE products SET name=? ,codigo=?, precio=?, descricion=?, sexo=?, tipo=?,  caregory_id=? WHERE id =?',
+    updateProduct:'UPDATE products SET name=? ,codigo=?, precio=?, descricion=?, sexo=?, empresa=?,  caregory_id=? WHERE id =?',
     updateImages:'UPDATE products SET url=? ,product_id=?, destacado=?  WHERE id =?',
     updateCategorias:'UPDATE categorias SET name=?',
     deleteProduct:'DELETE FROM produsts WHERE id=?',
@@ -25,9 +25,9 @@ module.exports ={
         })
     },
 
-    insertProduct(name, codigo, precio, descricion, sexo, tipo,  caregory_id){
+    insertProduct(name, codigo, precio, descricion, sexo,empresa,  caregory_id){
         return new Promise ((resolve, reject) =>{
-            db.run(dbt.insertProduct, [name, codigo, precio, descricion, sexo, tipo,  caregory_id], (err) =>{
+            db.run(dbt.insertProduct, [name, codigo, precio, descricion, sexo, empresa,  caregory_id], (err) =>{
                 if(err) reject(err);
                 resolve ();
             })

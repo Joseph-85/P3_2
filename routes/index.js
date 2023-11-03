@@ -4,8 +4,8 @@ var app = express();
 var router = express.Router();
 const request = require('request');
 var md5 = require ('md5');
-const sqlite3 = requerir('sqlite3');
-const db = new sqlite3.Database('../db/models');
+const sqlite3 = require('sqlite3');
+
 
 
 
@@ -17,6 +17,20 @@ router.get('/', function (req, res, next) {
 
 router.get('/usua.ejs', function (req, res, next) {
   res.render('usua.ejs');
+});
+
+router.get('/nc.ejs', function (req, res, next) {
+  res.render('nc.ejs');
+});
+router.get('/ni.ejs', function (req, res, next) {
+  res.render('ni.ejs');
+});
+router.get('/np.ejs', function (req, res, next) {
+  res.render('np.ejs');
+});
+
+router.get('/Emp', function (req, res, next) {
+  res.render('Emp');
 });
 
 
@@ -35,9 +49,29 @@ router.post('/usua', function (req, res, next) {
 });
 
 
-router.get('/Emp', function (req, res, next) {
-  res.render('Emp');
+
+
+
+
+router.get('/products' , function (req, res, next){
+  db.select(function(rows){
+    res.render('DB', {rows: rows});
+  });
 });
+
+
+router.get('/categorias' , function (req, res, next){
+  db.select(function(rows){
+    res.render('DB', {rows: rows});
+  });
+});
+
+router.get('/images' , function (req, res, next){
+  db.select(function(rows){
+    res.render('DB', {rows: rows});
+  });
+});
+
 
 
 
@@ -52,14 +86,6 @@ router.get('/', (req, res) => {
     res.render('index' , {products:[]});
   })
 });
-
-db.run(`INSERT INTO products(name, codigo, precio, descricion, sexo, tipo,  caregory_id) VALUES(?, ?, ?, ?, ?, ?, ?)`, 
-    ['Rock'],
-    function(error){
-        console.log("New playlist added with id " + this.lastID);
-    }
-);
-
 
 
 
