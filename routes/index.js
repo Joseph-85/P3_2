@@ -5,6 +5,7 @@ var router = express.Router();
 const request = require('request');
 var sqlite3 = require ('sqlite3').verbose();
 var md5 = require ('md5');
+const db = require ('../db/models');
 
 
 
@@ -35,6 +36,18 @@ router.post('/usua', function (req, res, next) {
 
 router.get('/Emp', function (req, res, next) {
   res.render('Emp');
+});
+
+
+router.get('/', (req, res) => {
+  db.getProducts()
+  .then(data =>{
+    console.log(data)
+    res.render('index', {prosucts: data});
+  })
+  .catch(err =>{
+    res.render('index' , {products:[]});
+  })
 });
 
 module.exports = router;
