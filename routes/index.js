@@ -5,7 +5,7 @@ var router = express.Router();
 const request = require('request');
 var md5 = require ('md5');
 const sqlite3 = require('sqlite3');
-var db = require("./DB.js")
+
 
 
 
@@ -49,7 +49,36 @@ router.post('/usua', function (req, res, next) {
   }
 });
 
+router.get('/products' , function (req, res, next){
+  db.select(function(rows){
+    res.render('DB', {rows: rows});
+  });
+});
 
+
+router.get('/categorias' , function (req, res, next){
+  db.select(function(rows){
+    res.render('DB', {rows: rows});
+  });
+});
+
+router.get('/images' , function (req, res, next){
+  db.select(function(rows){
+    res.render('DB', {rows: rows});
+  });
+});
+
+
+router.get('/', (req, res) => {
+  db.getProducts()
+  .then(data =>{
+    console.log(data)
+    res.render('index', {prosucts: data});
+  })
+  .catch(err =>{
+    res.render('index' , {products:[]});
+  })
+});
 
 
 app.get("/products", (req, res, next) => {
@@ -72,39 +101,6 @@ app.get("/products", (req, res, next) => {
 
 
 
-router.get('/products' , function (req, res, next){
-  db.select(function(rows){
-    res.render('DB', {rows: rows});
-  });
-});
-
-
-router.get('/categorias' , function (req, res, next){
-  db.select(function(rows){
-    res.render('DB', {rows: rows});
-  });
-});
-
-router.get('/images' , function (req, res, next){
-  db.select(function(rows){
-    res.render('DB', {rows: rows});
-  });
-});
-
-
-
-
-
-router.get('/', (req, res) => {
-  db.getProducts()
-  .then(data =>{
-    console.log(data)
-    res.render('index', {prosucts: data});
-  })
-  .catch(err =>{
-    res.render('index' , {products:[]});
-  })
-});
 
 
 
