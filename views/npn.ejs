@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto</title>
+    <link rel="stylesheet" href="/stylesheets/actualizar.css">
+</head>
+<body>
+    <div>
+        <h1>Editar Producto</h1>
+        <form action="/updateprd/<%= productos.id %>" method="post">
+            <input type="text" name="nombre" id="nombre" value="<%= productos.nombre %>" required maxlength="25" minlength="3">
+            <input type="number" name="codigo" id="codigo" value="<%= productos.codigo %>" required>
+            <input type="number" name="precio" id="precio" value="<%= productos.precio %>" required>
+            <input type="text" name="sexo" id="sexo" value="<%= productos.sexo %>" required maxlength="25" minlength="4">
+            <input type="text" name="empresa" id="empresa" value="<%= productos.empresa %>" required>
+            <input type="textarea" name="descripcion" id="descripcion" value="<%= productos.descripcion %>" maxlength="60" minlength="10">
+            <button type="submit" class="btn btn-primary">Actualizar Producto</button>
+        </form>
+    </div>
+</body>
+</html>

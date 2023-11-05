@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
+    <meta charset="UTF-8">
     <title>Producto.com</title>
     <link rel='stylesheet' href='/stylesheets/incre.css'/>
     <link rel="shortcut icon" type="image/x-icon" href="images/images.ico">
@@ -9,18 +10,18 @@
   <body>
     <img src="/images/5.jpg" class="m2">
     <div class="formulario2">
-    <form  action="/" method="post">
+    <form  action="/np" method="post">
       
       <div class="i1">
         <input type="text" name="name" id="name"  required >
         <label for="Nombre">Nombre del Producto</label>
       </div>
         <div class="i1">
-        <input type="integer" name="codigo" id="codigo"  required >
+        <input type="number" name="codigo" id="codigo"  required >
         <label for="Codigo">Codigo del Producto</label>
       </div>
         <div class="i1">
-        <input type="real" name="precio" id="precio"  required >
+        <input type="number" name="precio" id="precio"  required >
         <label for="Precio">Precio del Producto</label>
       </div>
         <div class="i1">
@@ -41,10 +42,23 @@
         
 
         </select>
+
+        <option value="" >--Seleccione--</option>
+        <% if (categorias) { %>
+            <% for (let i = 0; i < categorias.length; i++){  %>
+                <% if (categorias) { %>
+                    <option value="<%= categorias[i].id %>" id="categoria_id" name="categoria_id"><%= categorias[i].nombre %></option>
+
+                <% } %>
+            <% } %>
+        <% } else { %>
+                    <option value="">No existen categorias en el sistema</option>
+            <% }   %>
+    </select>
       </div>
 
 
-      <input type="submit" value="Iniciar" >
+      <input type="submit" value="Ingresar" >
 
       
 
