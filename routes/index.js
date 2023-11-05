@@ -32,15 +32,13 @@ router.get('/np.ejs', function (req, res, next) {
 router.get('/npn.ejs', function (req, res, next) {
   res.render('npn.ejs');
 });
-router.get('/nin.ejs', function (req, res, next) {
-  res.render('nin.ejs');
-});
+
 router.get('/ncn.ejs', function (req, res, next) {
   res.render('ncn.ejs');
 });
 
 
-router.get('/Emp', function (req, res, next) {
+router.get('/Emp.ejs', function (req, res, next) {
   res.render('Emp');
 });
 
